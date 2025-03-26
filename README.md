@@ -4,9 +4,9 @@
 This is a full-fledged E-Commerce application built using **FastAPI** and **SQLModel** for the backend. It supports user authentication, product management, and order processing.
 
 ## Features
-- **User Authentication**: Sign up, login, and secure API keys
+- **User Authentication**: Sign up, login, and secure API keys or Bearer Token (JWT)
 - **Product Management**: Add, update, and delete products with images
-- **Order System**: Place orders, manage order status, and process payments
+- **Order System**: Place orders, manage and update order details
 - **Database Integration**: SQLModel for structured data management
 - **API-Driven**: RESTful APIs for seamless frontend integration
 
@@ -38,11 +38,7 @@ This is a full-fledged E-Commerce application built using **FastAPI** and **SQLM
    ```sh
    pip install -r requirements.txt
    ```
-4. **Set Up Database**
-   ```sh
-   alembic upgrade head  # Apply migrations
-   ```
-5. **Run the Application**
+4. **Run the Application**
    ```sh
    uvicorn app.main:app --reload
    ```
@@ -50,11 +46,26 @@ This is a full-fledged E-Commerce application built using **FastAPI** and **SQLM
 ## API Endpoints
 | Method | Endpoint | Description |
 |--------|---------|-------------|
-| POST   | `/auth/signup` | Register a new user |
-| POST   | `/auth/login` | User login and token generation |
-| GET    | `/products/` | List all products |
-| POST   | `/products/` | Add a new product |
-| POST   | `/orders/` | Place an order |
+| POST   | `/user/createUser` | Register a new user |
+| POST   | `/user/loginUser` | User login and token generation |
+| POST   | `/user/updateUser` | Update User Details |
+| GET    | `/user/getUser` | Get User Details, Orders, Images uploaded, Products added |
+| DELETE | `/user/removeUser` | Remove the User |
+| GET   | `/product/getAll` | Fetch all the products added by the user |
+| GET   | `/product/retrieveProduct/{product_id}` | Retrieve the product by the product Id |
+| POST   | `/product/addProduct` | Add the Products |
+| DELETE   | `/product/removeProduct` | Delete the Products |
+| POST   | `/product/updateProduct/{product_id}` | Update the Products |
+| GET   | `/order/getAll` | Get All the orders placed by the user |
+| POST   | `/order/createOrder` | Place the order |
+| POST   | `/order/updateOrder/{order_id}` | Update the order |
+
+
+
+
+
+
+
 
 ## Future Enhancements
 - Payment Gateway Integration
@@ -64,6 +75,4 @@ This is a full-fledged E-Commerce application built using **FastAPI** and **SQLM
 ## Contributing
 Feel free to fork the repo and submit pull requests!
 
-## License
-This project is licensed under the MIT License.
 
