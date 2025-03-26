@@ -26,3 +26,9 @@ def createOrder(order_model: orderCreate, user_id: int = Depends(validate_api_ke
 def updateOrder(order_id:str, order_model: orderCreate, user_id: int = Depends(validate_api_key), session:Session=Depends(get_session)):
     response = order_service.update_order(order_id=order_id, order_model = order_model, user_id=user_id, session=session)
     return response
+
+
+@order_router.get('/retrieveOrder/{order_id}')
+def retrieve_order(order_id:str, user_id: int = Depends(validate_api_key), session:Session= Depends(get_session)):
+    response = order_service.retrieve_order(order_id=order_id, user_id=user_id, session=session)
+    return response
